@@ -39,32 +39,19 @@ class Input extends Component {
     }
 
     removeTodo(item) {
-		console.log("TCL: Input -> removeTodo -> item", item)
         const newItem = this.state.item.slice()
-		console.log("TCL: Input -> removeTodo -> newItem", newItem)
         const complete = this.state.complete.slice()
-		console.log("TCL: Input -> removeTodo -> complete", complete)
         
         newItem.splice(item, 1)
         let index = complete.indexOf(parseInt(item))
         complete.splice(index, 1)
+        this.refs[`item${item}`].checkedItem()
 
         this.setState({
             oldItem: newItem,
             item: newItem,
             complete: complete
         })
-        // newItem.map((data, key) => {
-        //     if (data.value === item) {
-        //         newItem.splice(key, 1)
-        //         complete.splice(key, 1)
-        //     }
-        // })
-        // this.setState({
-        //     oldItem: newItem,
-        //     item: newItem,
-        //     complete: complete
-        // })
     }
 
     filterTodo(param) {

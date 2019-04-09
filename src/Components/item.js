@@ -13,7 +13,7 @@ class Item extends Component {
 
   checkedItem() {
     this.setState({
-      isChecked: !this.state.isChecked
+      isChecked: !this.props.isCheck
     })
     // (this.state.isChecked) ? 'line-through' : ''
   }
