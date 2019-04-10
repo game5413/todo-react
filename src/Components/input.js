@@ -29,6 +29,7 @@ class Input extends Component {
     }
     let newItem = this.state.item.slice()
     newItem.push({
+      id: Math.random().toString(36).replace('0.', ''),
       value: temp,
       temp: '',
       isComplete: false
@@ -186,7 +187,7 @@ class Input extends Component {
                   if (data.isComplete) {
                     return (
                       <Item
-                        key={key}
+                        key={data.id}
                         data={data.value}
                         abort={this.abortUpdateTodo}
                         onUpdates={this.onUpdateTodo}
@@ -205,7 +206,7 @@ class Input extends Component {
                   if (!data.isComplete) {
                     return (
                       <Item
-                        key={key}
+                        key={data.id}
                         data={data.value}
                         abort={this.abortUpdateTodo}
                         onUpdates={this.onUpdateTodo}
@@ -223,7 +224,7 @@ class Input extends Component {
                 } else {
                   return (
                     <Item
-                      key={key}
+                      key={data.id}
                       data={data.value}
                       abort={this.abortUpdateTodo}
                       onUpdates={this.onUpdateTodo}
