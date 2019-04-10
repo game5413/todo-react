@@ -19,6 +19,7 @@ class Input extends Component {
     this.abortUpdateTodo = this.abortUpdateTodo.bind(this)
     this.onUpdateTodo = this.onUpdateTodo.bind(this)
     this.completeAll = this.completeAll.bind(this)
+    this.clearComplete = this.clearComplete.bind(this)
   }
 
   addTodo() {
@@ -117,6 +118,22 @@ class Input extends Component {
     } else {
       this.setState({ allComplete: true })
     }
+  }
+
+  clearComplete() {
+    const { item } = this.state
+    const data = item.slice()
+    let newData = []
+    data.forEach(element => {
+      if (!element.isComplete) {
+        const index = data.indexOf(element)
+        newData.push(data[index])
+      }
+    })
+    this.setState({
+      item: newData,
+      allComplete: false
+    })
   }
 
   completeAll(data = '') {
@@ -226,6 +243,7 @@ class Input extends Component {
             total={this.state.item.length}
             onClick={this.filterTodo}
             complete={totalComplete}
+            clear={this.clearComplete}
           />
         </center>
       </div>

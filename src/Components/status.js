@@ -23,6 +23,11 @@ class Status extends Component {
             Complete
           </button>
           <button onClick={() => this.props.onClick('Active')}>Active</button>
+          {
+            (this.props.complete)
+            ? <button onClick={() => this.props.clear()}>Clear Complete</button>
+            : ''
+          }
         </div>
       </div>
     )
