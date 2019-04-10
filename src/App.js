@@ -4,13 +4,6 @@ import './App.css';
 import Input from './Components/input'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: null
-    }
-  }
-
   render() {
     return (
       <Input/>

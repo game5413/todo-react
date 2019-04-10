@@ -13,9 +13,11 @@ class Status extends Component {
       </p>
     )
     return (
-      <div>
-        <p>{total}</p>
-        <div>
+      <div className="status">
+        <div className="status-text">
+          {total}
+        </div>
+        <div className="action-btn">
           <button onClick={() => this.props.onClick('All')}>All</button>
           <button onClick={() => this.props.onClick('Complete')}>
             Complete

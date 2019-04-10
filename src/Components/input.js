@@ -157,7 +157,7 @@ class Input extends Component {
             type="text"
             key="item"
             onSubmit={() => this.addTodo()}
-            onChangeCapture={e => this.setState({ tempValue: e.target.value })}
+            onChange={e => this.setState({ tempValue: e.target.value })}
             value={this.state.tempValue}
           />
           <button onClick={() => this.addTodo()}>Add</button>
@@ -165,10 +165,11 @@ class Input extends Component {
           <div>
             <ul>
               {this.state.item.map((data, key) => {
-                if (this.state.filter == 'Complete') {
+                if (this.state.filter === 'Complete') {
                   if (data.isComplete) {
                     return (
                       <Item
+                        key={key}
                         data={data.value}
                         abort={this.abortUpdateTodo}
                         onUpdates={this.onUpdateTodo}
@@ -176,15 +177,18 @@ class Input extends Component {
                         keys={key}
                         ref={`item${key}`}
                         isCheck={data.isComplete}
-                        onChange={item => this.completeTodo(item, key)}
+                        onChange={item =>
+                          this.completeTodo(item, key)
+                        }
                         onClick={this.removeTodo}
                       />
                     )
                   }
-                } else if (this.state.filter == 'Active') {
+                } else if (this.state.filter === 'Active') {
                   if (!data.isComplete) {
                     return (
                       <Item
+                        key={key}
                         data={data.value}
                         abort={this.abortUpdateTodo}
                         onUpdates={this.onUpdateTodo}
@@ -192,7 +196,9 @@ class Input extends Component {
                         keys={key}
                         ref={`item${key}`}
                         isCheck={data.isComplete}
-                        onChange={item => this.completeTodo(item, key)}
+                        onChange={item =>
+                          this.completeTodo(item, key)
+                        }
                         onClick={this.removeTodo}
                       />
                     )
@@ -200,6 +206,7 @@ class Input extends Component {
                 } else {
                   return (
                     <Item
+                      key={key}
                       data={data.value}
                       abort={this.abortUpdateTodo}
                       onUpdates={this.onUpdateTodo}
