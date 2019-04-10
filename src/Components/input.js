@@ -107,7 +107,7 @@ class Input extends Component {
       })
     }
     let length = 0
-    this.state.item.map((data, key) => {
+    todo.map((data, key) => {
       if (data.isComplete) {
         ++length
       }
@@ -119,22 +119,25 @@ class Input extends Component {
     }
   }
 
-  completeAll() {
+  completeAll(data = '') {
     const { item } = this.state
-    const newItem = item.slice()
-    let length = 0
-    if (newItem.length) {
-      newItem.map((data, key) => {
-        if (!data.isComplete) {
-            ++length
-        }
-        data.isComplete = (length) ? true : !data.isComplete
-      })
-      this.setState({
-        item: newItem,
-        allComplete: !this.state.allComplete
-      })
+    if (!data) {
+      data = item
     }
+    const newItem = data.slice()
+    let length = 0
+    newItem.map((data, key) => {
+      if (!data.isComplete) {
+        ++length
+      }
+    })
+    newItem.map((data, key) => {
+      data.isComplete = (length > 0) ? true : !data.isComplete
+    })
+    this.setState({
+      item: newItem,
+      allComplete: !this.state.allComplete
+    })
   }
 
   render() {
