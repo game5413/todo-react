@@ -1,6 +1,15 @@
 import * as TODO_TYPES from './Types'
 
 export const TODO_ADD = payload => {
+  if (payload === {}) {
+    payload = Object.assign({}, {type: 'SAVE'})
+  }
+  else {
+    const type = 'type' in payload
+    if (!type) {
+      Object.assign(payload, { type: 'ON_ADD' })
+    }
+  }
   return {
     type: TODO_TYPES.TODO_ADD,
     payload
@@ -17,33 +26,31 @@ export const TODO_REMOVE = payload => {
 export const TODO_FILTER = payload => {
   return {
     type: TODO_TYPES.TODO_FILTER,
-    payload: payload || 'ALL'
+    payload: payload
   }
 }
 
 export const TODO_UPDATE = payload => {
+  const type = 'type' in payload
+  if (!type) {
+    Object.assign(payload, {type: 'ON_EDIT'})
+  }
   return {
     type: TODO_TYPES.TODO_UPDATE,
     payload
   }
 }
 
-export const ON_TODO_UPDATE = payload => {
-  if (typeof(payload) !== 'object') {
-    return 'not object'
-  }
+export const TODO_STATUS = payload => {
   return {
-    type: TODO_TYPES.TODO_UPDATE,
-    payload: Object.assign(payload, {"isUpdate": true})
+    type: TODO_TYPES.TODO_STATUS,
+    payload
   }
 }
 
-export const ABORT_TODO_UPDATE = payload => {
-  if (typeof(payload) !== 'object') {
-    return 'not object'
-  }
+export const TODO_CLEAR = payload => {
   return {
-    type: TODO_TYPES.TODO_UPDATE,
-    payload: Object.assign(payload, {"isAbort": true})
+    type: TODO_TYPES.TODO_CLEAR,
+    payload
   }
 }

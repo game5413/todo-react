@@ -11,7 +11,7 @@ export default class Test extends Component {
             this is props:
             {JSON.stringify(this.props.redux)}
           </span>
-          <input type="text" onChange={e => this.props.redux.TODO_ADD({value: e.target.value, type: 'ON_ADD'})} onKeyPress={e => (e.key === 'Enter') ? this.props.redux.TODO_ADD({value: e.target.value, type: 'SAVE'}) : null} value={this.props.redux.value} />
+          <input type="text" onChange={e => this.props.redux.TODO_ADD({value: e.target.value})} onKeyPress={e => (e.key === 'Enter') ? this.props.redux.TODO_ADD({value: e.target.value, type: 'SAVE'}) : null} value={this.props.redux.todoReducers.value} />
         </center>
       </div>
     )

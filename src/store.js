@@ -1,15 +1,19 @@
-import {createStore} from 'redux'
+import {createStore, combineReducers} from 'redux'
 import todoReducers from './Reducers/todoReducers'
 
-let states = {
-  item: [],
-  value: null,
-  allComplete: false,
-  filter: 'ALL'
-}
+// let states = {
+//   item: [],
+//   value: '',
+//   allComplete: false,
+//   filter: 'ALL'
+// }
 
-function configureStore(initialState = states) {
-    return createStore(todoReducers, initialState)
+const reducer = combineReducers({
+  todoReducers
+})
+
+function configureStore(initialState = {}) {
+    return createStore(reducer, initialState)
 }
 
 export default configureStore

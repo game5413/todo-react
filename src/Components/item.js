@@ -19,9 +19,8 @@ class Item extends Component {
             this.setState({
               isEdit: !this.state.isEdit
             })
-            this.props.update(this.props.data, this.props.keys)
+            this.props.update({ value: this.props.keys })
           }
-          console.log(this.props)
         }}
       >
         {this.state.isEdit ? (
@@ -30,18 +29,28 @@ class Item extends Component {
             key={this.props.keys}
             value={this.props.data}
             onChange={e =>
-              this.props.onUpdates(e.target.value, this.props.keys)
+              // this.props.onUpdates(e.target.value, this.props.keys)
+              this.props.update({
+                value: this.props.keys,
+                text: e.target.value,
+                type: 'IS_UPDATE'
+              })
             }
             onKeyPress={e => {
               if (e.key === 'Enter') {
-                this.props.onUpdates(e.target.value, this.props.keys, true)
+                // this.props.onUpdates(e.target.value, this.props.keys, true)
+                this.props.update({ type: 'SAVE' })
                 this.setState({
                   isEdit: !this.state.isEdit
                 })
               }
             }}
             onBlur={() => {
-              this.props.abort(this.props.data, this.props.keys)
+              // this.props.abort(this.props.data, this.props.keys)
+              this.props.update({
+                value: this.props.keys,
+                type: 'IS_ABORT'
+              })
               this.setState({
                 isEdit: !this.state.isEdit
               })
@@ -52,14 +61,14 @@ class Item extends Component {
           this.props.data
         )}
         <button
-          onClick={e => this.props.onClick(e.target.value)}
+          onClick={e => this.props.onClick({ value: e.target.value })}
           value={this.props.keys}
         >
           X
         </button>
         <input
           type="checkbox"
-          onChange={() => this.props.onChange(this.props.data)}
+          onChange={() => this.props.onChange({ value: this.props.keys })}
           checked={this.props.isCheck}
         />
       </li>
