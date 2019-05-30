@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Item from './item'
-import Status from './status'
+import Item from './ItemList'
+import Status from './FooterActions'
 
 class Input extends Component {
   constructor(props) {

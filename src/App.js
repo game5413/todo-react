@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
-import './App.css';
-import Input from './Components/input'
+import React, { PureComponent } from 'react'
+import Todo from './Components/TodoApp'
 
-class App extends Component {
+class App extends PureComponent {
   render() {
     return (
-      <Input/>
+      <Todo/>
     )
   }
 }
