@@ -16,10 +16,10 @@ const styles = theme => ({
   },
   checkBoxWrapper: {
     border: "1px solid black",
-    height: 20,
-    width: 20,
-    marginRight: 10,
-    padding: 5
+    height: theme.PxToRem(20),
+    width: theme.PxToRem(20),
+    marginRight: theme.PxToRem(10),
+    padding: theme.PxToRem(5)
   },
   checkBoxValue: {
     width: "100%",
