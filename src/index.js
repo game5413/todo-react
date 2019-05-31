@@ -6,8 +6,18 @@ import * as serviceWorker from './serviceWorker';
 import { JssProvider, ThemeProvider } from "react-jss"
 import JssPreset from "./jss"
 
+function PxToRem(pixel) {
+    return `${(pixel / 16)}rem`
+}
+
+function RandString() {
+    return Math.random().toString(36).replace('0.', '')
+}
+
 const theme = {
-    background: "#00000"
+    background: "#00000",
+    PxToRem: PxToRem,
+    randomString: RandString
 }
 
 ReactDOM.render(

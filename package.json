@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "jss": "^9.8.7",
+    "jss-plugin-camel-case": "^10.0.0-alpha.7",
     "jss-plugin-nested": "^10.0.0-alpha.7",
     "jss-plugin-vendor-prefixer": "^10.0.0-alpha.7",
     "lodash": "^4.17.11",

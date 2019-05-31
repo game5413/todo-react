@@ -3,56 +3,43 @@ import Item from './ItemList'
 import Status from './FooterActions'
 import withStyles from "react-jss"
 
-function PxToRem(pixel) {
-  return `${(pixel / 16)}rem`
-}
-
-function RandString() {
-  return Math.random().toString(36).replace('0.', '')
-}
-
 const styles = theme => ({
-  layout: {}
+  layout: {},
+  inputWrapper: {
+    display: "inline-flex",
+    width: "100%",
+    height: "inherit",
+    justifyContent: "center"
+  },
+  checkBox: {
+    display: "none"
+  },
+  checkBoxWrapper: {
+    border: "1px solid black",
+    height: 20,
+    width: 20,
+    marginRight: 10,
+    padding: 5
+  },
+  checkBoxValue: {
+    width: "100%",
+    height: "100%",
+  }
 })
 
 let TodoId = 0
 
-const InputComponent = _ => {
-  const styles = {
-    inputWrapper: {
-      display: "inline-flex",
-      width: "100%",
-      height: "inherit",
-      justifyContent: "center"
-    },
-    checkBox: {
-      display: "none"
-    },
-    checkBoxWrapper: {
-      border: "1px solid black",
-      height: PxToRem(20),
-      width: PxToRem(20),
-      marginRight: PxToRem(10),
-      padding: PxToRem(5)
-    },
-    checkBoxValue: {
-      width: "100%",
-      height: "100%",
-    }
-  }
-
+const InputComponent = ({styles}) => {
   return (
-    <div style={styles.inputWrapper}>
+    <div className={styles.inputWrapper}>
       <input
         id="checkbox-all"
-        style={styles.checkBox}
+        className={styles.checkBox}
         type="checkbox"
       />
-      <label htmlFor="checkbox-all" style={styles.checkBoxWrapper}>
+      <label htmlFor="checkbox-all" className={styles.checkBoxWrapper}>
         <div
-          style={
-            styles.checkBoxValue
-          }
+          className={styles.checkBoxValue}
         />
       </label>
       <input
@@ -227,11 +214,12 @@ class Input extends Component {
 
   render() {
     const { item } = this.state
+    const { classes } = this.props
     let totalComplete = 0
     const count = item.map((data, index) => data.isComplete && ++totalComplete)
     return (
-      <div>
-        <InputComponent/>
+      <div className={classes.layout}>
+        <InputComponent styles={classes}/>
         <center>
           <input
             type="checkbox"
