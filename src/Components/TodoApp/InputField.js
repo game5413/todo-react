@@ -1,6 +1,68 @@
 import React, { Component } from 'react'
 import Item from './ItemList'
 import Status from './FooterActions'
+import withStyles from "react-jss"
+
+function PxToRem(pixel) {
+  return `${(pixel / 16)}rem`
+}
+
+function RandString() {
+  return Math.random().toString(36).replace('0.', '')
+}
+
+const styles = theme => ({
+  layout: {}
+})
+
+let TodoId = 0
+
+const InputComponent = _ => {
+  const styles = {
+    inputWrapper: {
+      display: "inline-flex",
+      width: "100%",
+      height: "inherit",
+      justifyContent: "center"
+    },
+    checkBox: {
+      display: "none"
+    },
+    checkBoxWrapper: {
+      border: "1px solid black",
+      height: PxToRem(20),
+      width: PxToRem(20),
+      marginRight: PxToRem(10),
+      padding: PxToRem(5)
+    },
+    checkBoxValue: {
+      width: "100%",
+      height: "100%",
+    }
+  }
+
+  return (
+    <div style={styles.inputWrapper}>
+      <input
+        id="checkbox-all"
+        style={styles.checkBox}
+        type="checkbox"
+      />
+      <label htmlFor="checkbox-all" style={styles.checkBoxWrapper}>
+        <div
+          style={
+            styles.checkBoxValue
+          }
+        />
+      </label>
+      <input
+        type="text"
+      />
+    </div>
+  )
+}
+
+React.memo(InputComponent)
 
 class Input extends Component {
   constructor(props) {
@@ -29,7 +91,7 @@ class Input extends Component {
     }
     let newItem = this.state.item.slice()
     newItem.push({
-      id: Math.random().toString(36).replace('0.', ''),
+      id: ++TodoId,
       value: temp,
       temp: '',
       isComplete: false
@@ -158,13 +220,18 @@ class Input extends Component {
     })
   }
 
+  componentDidMount()
+  {
+    console.log(this)
+  }
+
   render() {
+    const { item } = this.state
     let totalComplete = 0
-    this.state.item.map((data, key) =>
-      data.isComplete ? ++totalComplete : null
-    )
+    const count = item.map((data, index) => data.isComplete && ++totalComplete)
     return (
       <div>
+        <InputComponent/>
         <center>
           <input
             type="checkbox"
@@ -179,7 +246,6 @@ class Input extends Component {
             value={this.state.tempValue}
           />
           <button onClick={() => this.addTodo()}>Add</button>
-          {/* <button onClick={() => this.setState({item: this.state.oldItem})}>Rollback</button> */}
           <div>
             <ul>
               {this.state.item.map((data, key) => {
@@ -252,4 +318,4 @@ class Input extends Component {
   }
 }
 
-export default Input
+export default withStyles(styles, { withTheme: true })(Input)
