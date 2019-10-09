@@ -55,7 +55,7 @@ class Item extends Component {
           onClick={e => this.props.onClick(e.target.value)}
           value={this.props.keys}
         >
-          X
+          x
         </button>
         <input
           type="checkbox"
