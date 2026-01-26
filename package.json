@@ -7,7 +7,7 @@
     "jss-plugin-camel-case": "^10.0.0-alpha.7",
     "jss-plugin-nested": "^10.0.0-alpha.7",
     "jss-plugin-vendor-prefixer": "^10.0.0-alpha.7",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.23",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-jss": "^8.6.1",
